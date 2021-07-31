@@ -14,7 +14,7 @@ bcrypt = Bcrypt(app)
 
 ############ TO DO #############
 
-# fix it so contributors can edit and delete their own recipes, but admins can edit and delete everyone's recipes
+# fix it so members can edit and delete their own recipes, but admins can edit and delete everyone's recipes
 # add moment.js to clean up date added and date modified appearance in recipes and users
 # improve appearance of menu
 # ensure each role has access to appropriate menu choices
@@ -186,7 +186,7 @@ def logout():
 
 @ app.route('/my-account/<user_id>', methods=['GET', 'POST'])
 @ login_required
-@ roles_required('user', 'contributor', 'admin')
+@ roles_required('user', 'member', 'admin')
 def my_account(user_id):
     edit_account = users.find_one({'_id': ObjectId(user_id)})
     if edit_account:
@@ -199,7 +199,7 @@ def my_account(user_id):
 
 @ app.route('/update-myaccount/<user_id>', methods=['GET', 'POST'])
 @ login_required
-@ roles_required('user', 'contributor', 'admin')
+@ roles_required('user', 'member', 'admin')
 def update_myaccount(user_id):
     if request.method == 'POST':
         form = request.form
@@ -350,7 +350,7 @@ def delete_category(category_id):
 # authenticated users can view al the recipes
 @ app.route('/recipes', methods=['GET', 'POST'])
 @ login_required
-@ roles_required('admin', 'contributor', 'user')
+@ roles_required('admin', 'member', 'user')
 def view_recipes():
     return render_template('recipes.html', all_recipes=recipes.find())
 
@@ -359,7 +359,7 @@ def view_recipes():
 
 @ app.route('/recipes/print-recipe/<recipe_id>', methods=['GET', 'POST'])
 @ login_required
-@ roles_required('admin', 'contributor', 'user')
+@ roles_required('admin', 'member', 'user')
 def print_recipe(recipe_id):
     print_recipe = recipes.find_one({'_id': ObjectId(recipe_id)})
     if print_recipe:
@@ -376,12 +376,12 @@ def print_recipe(recipe_id):
 def admin_recipes():
     return render_template('recipe-admin.html', all_categories=categories.find(), all_recipes=recipes.find())
 
-# administrators and contributors can add new recipes
+# administrators and member can add new recipes
 
 
 @ app.route('/recipes/add-recipe', methods=['GET', 'POST'])
 @ login_required
-@ roles_required('admin', 'contributor')
+@ roles_required('admin', 'member')
 def add_recipe():
     if request.method == 'POST':
         form = request.form
