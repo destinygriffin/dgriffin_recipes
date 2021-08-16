@@ -10,7 +10,7 @@
 <div class="member_left">
     <h3>Create an account</h3>
     <hr>
-    <form method="POST" action="/member/add-user">
+    <form method="POST" action="/register">
 
         <div  class="form-group"> <label for="first_name" > First Name: </label>
             <input type="text" id="first_name" name="first_name" class="form-control" required autofocus></div>
@@ -30,14 +30,11 @@
             <div class="form-group">
             <label for="role"  class="mr-sm-2" >Role :</label>
             <select name="role" id="role" class="custom-select mr-sm-2" required>
-                <option value="" selected disabled hidden> Choose role ... </option>
-                {% for role in all_roles %}
-                <option value="{{ role['role_name'] }}">{{ role['role_name'] }}</option>
-                {% endfor %}
+                <option value="member"> member </option>
             </select>
         </div>
         <div>
-            <input type="submit" value="Add new user" class="btn btn-secondary"></div>
+            <input type="submit" value="Create account" class="btn btn-secondary"></div>
 
     </form>
 </div>

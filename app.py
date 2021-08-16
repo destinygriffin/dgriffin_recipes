@@ -143,13 +143,6 @@ def about():
 # unauthenticated users can see a message on the registration page
 
 
-@app.route('/register')
-def register():
-    return 'Contact the site administrator for an account.'
-
-# unauthenticated users can view the login page
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -259,6 +252,31 @@ def admin_add_user():
         return redirect(url_for('admin_users'))
     return render_template('user-admin.html', all_roles=roles.find(), all_users=users.find())
 
+@ app.route('/register', methods=['GET', 'POST'])
+def member_add_user():
+    if request.method == 'POST':
+        form = request.form
+
+        password = request.form['password']
+        pwd_hash = bcrypt.generate_password_hash(password)
+
+        email = users.find_one({"email": request.form['email']})
+        if email:
+            flash('This email is already registered.', 'warning')
+            return 'This email has already been registered.'
+        new_user = {
+            'first_name': form['first_name'],
+            'last_name': form['last_name'],
+            'email': form['email'],
+            'password': pwd_hash,
+            'role': form['role'],
+            'date_added': datetime.datetime.now(),
+            'date_modified': datetime.datetime.now()
+        }
+        users.insert_one(new_user)
+        flash(new_user['email'] + ' user has been added.', 'success')
+        return redirect(url_for('index'))
+    return render_template('user-member.html', all_roles=roles.find(), all_users=users.find())
 
 @ app.route('/admin/delete-user/<user_id>', methods=['GET', 'POST'])
 @ login_required
