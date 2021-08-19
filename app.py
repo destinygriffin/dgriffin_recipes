@@ -81,6 +81,14 @@ class User:
         return check_password_hash(password_hash, password)
 '''
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('error-page.html'), 404
+
+
+
+
+
 ### custom wrap to determine role access  ###
 
 
