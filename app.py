@@ -261,7 +261,7 @@ def admin_add_user():
     return render_template('user-admin.html', all_roles=roles.find(), all_users=users.find())
 
 @ app.route('/register', methods=['GET', 'POST'])
-def member_add_user():
+def register():
     if request.method == 'POST':
         form = request.form
 
