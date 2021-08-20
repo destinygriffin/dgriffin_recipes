@@ -3,7 +3,31 @@ label.print{
   font-weight: bold;
 }
 
+.body{
+background-image:http://destnygriffn.me/static/chefsclub_small.png !important; }
+
+.navbar-custom{
+  background-color: #CCCEB8 !important;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: #1D241E !important; }
+
+
+.navbar-custom .navbar-nav .nav-link {
+  color: #5F839E !important;
+}
+
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:focus .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #5F839E !important;
+}
+
+
+
 .btn-primary{background-color: #CCCEB8 !important; color: #1D241E !important; border-color: #AD8A74 !important; }
 
-.navbar-custom .navbar-brand {color: #CCCEB8 !important;}
-.navbar-custom .navbar-text{color: #1D241E !important;}
+
+.btn btn-outline-success my-2 my-sm-0{background-color: #CCCEB8 !important; color: #1D241E !important; border-color: #AD8A74 !important; }
