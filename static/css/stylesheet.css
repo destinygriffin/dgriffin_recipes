@@ -2,3 +2,5 @@ label.print{
   font-style: italic;
   font-weight: bold;
 }
+
+.btn-primary{background-color: #CCCEB8 !important; color: #1D241E !important; border-color: #AD8A74 !important; }
