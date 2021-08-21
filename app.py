@@ -146,7 +146,7 @@ def search():
 
 @app.route('/about')
 def about():
-    return 'about page'
+    return render_template('about.html')
 
 # unauthenticated users can see a message on the registration page
 
